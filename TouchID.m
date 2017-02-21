@@ -26,6 +26,9 @@ RCT_EXPORT_METHOD(authenticate: (NSString *)reason
     LAContext *context = [[LAContext alloc] init];
     NSError *error;
 
+    // Hide "Enter Password" button => http://stackoverflow.com/a/28156051/2779298
+    context.localizedFallbackTitle = @"";
+
     // Device has TouchID
     if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&error]) {
         // Attempt Authentification
